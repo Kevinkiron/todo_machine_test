@@ -6,9 +6,7 @@ import 'app/routes/app_pages.dart';
 import 'utils/global.dart';
 
 void main() {
-  runApp(
-    MyApp(),
-  );
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -21,7 +19,8 @@ class MyApp extends StatelessWidget {
     Constants.width = MediaQuery.sizeOf(context).width;
     Constants.height = MediaQuery.sizeOf(context).height;
     return GetMaterialApp(
-      title: "Application",
+      debugShowCheckedModeBanner: false,
+      title: "Todo App",
       initialRoute: AppPages.INITIAL,
       getPages: AppPages.routes,
     );

@@ -4,7 +4,7 @@ import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:todo/app/data/api_services.dart/api_endpoints.dart';
 import 'package:todo/app/data/api_services.dart/base_service.dart';
-import 'package:todo/app/modules/home/views/details_page.dart';
+import 'package:todo/app/modules/home/views/edit_details_page.dart';
 import 'package:todo/app/modules/home/views/home_view.dart';
 import 'package:todo/utils/global.dart';
 
@@ -32,6 +32,8 @@ class HomeController extends GetxController {
       homeLoad.value = false;
     }
   }
+
+  final TextEditingController edittitleController = TextEditingController();
 
   RxMap todoDeatil = {}.obs;
   Future<void> getTodoDetail({required String id}) async {
@@ -63,6 +65,27 @@ class HomeController extends GetxController {
         titleController.clear();
         descController.clear();
         toastmsgTop("Todo Added Successfully");
+        Get.off(() => HomeView());
+        log(response.data);
+      } else {
+        // log(response.data);
+      }
+    } catch (e) {
+      log(e.toString());
+    }
+  }
+
+  Future<void> editTodo({
+    required String title,
+    required String id,
+  }) async {
+    try {
+      final response = await apiService
+          .put(ApiEndpoints.todoDetail + id, data: {'title': title});
+      if (response.statusCode == 200 || response.statusCode == 201) {
+        todoDeatil.value = response.data;
+        edittitleController.clear();
+        toastmsgTop("Todo Updated Successfully");
         Get.off(() => HomeView());
         log(response.data);
       } else {

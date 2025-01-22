@@ -186,10 +186,12 @@ class HomeView extends GetView<HomeController> {
             10.height,
             AppButton(
               onTap: () {
+                controller.edittitleController.text =
+                    controller.todoList[index]["title"];
                 controller.getTodoDetail(
                     id: controller.todoList[index]["id"].toString());
               },
-              text: "See Details",
+              text: "Edit Details",
             )
           ],
         ),

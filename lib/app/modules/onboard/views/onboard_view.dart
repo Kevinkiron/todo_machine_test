@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:todo/app/modules/home/bindings/home_binding.dart';
-import 'package:todo/app/modules/home/views/home_view.dart';
 import 'package:todo/app/modules/onboard/controllers/onboard_controller.dart';
 import 'package:todo/app/routes/app_pages.dart';
 
